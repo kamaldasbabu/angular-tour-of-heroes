@@ -1,2 +1,2 @@
-# angulr-tour-of-heros
+# angular-tour-of-heros
 My First training BCD
