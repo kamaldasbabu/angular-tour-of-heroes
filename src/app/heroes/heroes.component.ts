@@ -1,6 +1,8 @@
-import { HEROES } from '../monk-heroes';
+
+import { HeroService } from './../hero.service';
 import { Component, OnInit } from '@angular/core';
-import { Hero } from './../hero';
+import {Hero} from '../hero';
+
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -13,15 +15,22 @@ export class HeroesComponent implements OnInit {
   //   name: 'DAD'
   // };
   //writesomthing = '';
-  heroes = HEROES;
+  // selectedHero: Hero;
+  // onSelect(hero: Hero): void{
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  // }
+  heroes : Hero[];
+  constructor( private heroService: HeroService) { }
   
-  selectedHero: Hero;
-  onSelect(hero: Hero): void{
-    this.selectedHero = hero;
-  }
-  constructor() { }
 
   ngOnInit(): void {
+    this.getHeroes();
   }
+  
+  getHeroes(): void{
+      this.heroService.getHeroes()
+        .subscribe(heroes =>this.heroes = heroes);
 
+}
 }
